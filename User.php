@@ -16,6 +16,11 @@ class User
 
   }
 
+  public function getEmail()
+  {
+    return($this->email);
+  }
+
   public function setPassword( $sPassword )
   {
     if (checkPassword($sPassword)) {
@@ -23,6 +28,11 @@ class User
       $this->password_hash = password_hash($sPassword, PASSWORD_DEFAULT);
     }
 
+  }
+
+  public function getPasswordHash()
+  {
+    return($this->password_hash);
   }
 
   public function setDateConnexion( $sDate )

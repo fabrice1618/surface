@@ -21,6 +21,7 @@ $unUser->setPassword("Abcd12@:");
 $unUser->setDateConnexion("20191204");
 
 $userModel = new UserModel($dbh);
+$userModel->create($unUser);
 
 
 

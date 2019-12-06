@@ -1,4 +1,6 @@
 <?php
+// Programme de test du modele User en version procedurale
+
 require_once("modele_user.php");
 
 // Ouvre la connexion DB en mode persistant

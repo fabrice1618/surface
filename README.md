@@ -9,3 +9,12 @@ Mises à jour du projet:
             - programme de test plus complet avec un 2eme seau
             - Les programmes sont déplacés dans le répertoire cours
 ```
+
+```
+06/12/2019 Menage dans le répertoire projet:
+            - Création du dossier archive
+            - deplacement du modele avec code procedural dans archive et de son programme de test
+            - deplacement du script de creation BDD version 1 dans archive
+            - creation du dossier documents
+            - deplacement dans documents de l'image du datamodel, du projet MySQL Workbench, du cahier des charges
+```

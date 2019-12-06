@@ -1,4 +1,6 @@
 <?php
+// Ceci est la version du Modele User avec du code procedural
+
 
 // parametres de definition
 function createUser( $sEmail, $sPassword, $sDateConnexion )

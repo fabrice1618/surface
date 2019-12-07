@@ -1,5 +1,5 @@
 <?php
-require_once("password_functions.php");
+require_once("PasswordGenerator.php");
 
 class User
 {
@@ -14,6 +14,10 @@ class User
       $this->email = $sEmail;
     }
 
+    $password = new PasswordGenerator();
+    $this->password = $password->getPassword();
+    $this->password_hash = $password->getPasswordHash();
+    unset($password);
   }
 
   public function getEmail()
@@ -21,23 +25,29 @@ class User
     return($this->email);
   }
 
-  public function setPassword( $sPassword )
-  {
-    if (checkPassword($sPassword)) {
-      $this->password = $sPassword;
-      $this->password_hash = password_hash($sPassword, PASSWORD_DEFAULT);
+
+    public function getPassword()
+    {
+      return($this->password);
     }
 
-  }
+    public function getPasswordHash()
+    {
+        return($this->password_hash);
+    }
 
-  public function getPasswordHash()
+  public function newPassword()
   {
-    return($this->password_hash);
+      $password = new PasswordGenerator();
+      $this->password = $password->getPassword();
+      $this->password_hash = $password->getPasswordHash();
+      unset($password);
   }
 
   public function setDateConnexion( $sDate )
   {
 
+      // utilisation de l'operateur de transtypage (int) qui converti la valeur en integer
     if (
       is_string($sDate) &&
       strlen($sDate) == 8 &&
@@ -56,9 +66,10 @@ class User
   public function toArray()
   {
     $aReturn = [
-      "email" => $this->email,
-      "password_hash" => $this->password_hash,
-      "date_connexion" => $this->date_connexion
+      "email"           => $this->email,
+      "password"        => $this->password,
+      "password_hash"   => $this->password_hash,
+      "date_connexion"  => $this->date_connexion
     ];
 
     return($aReturn);

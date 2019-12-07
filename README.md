@@ -2,6 +2,12 @@
 Mises à jour du projet:
 
 ```
+07/12/2019
+    - Creation de la classe PasswordGenerator qui génère un mot de passe suivant un schéma prédéfini
+    - Adaptation de la classe User pour utiliser les nouvelles fonctionnalités
+```
+
+```
 06/12/2019 Modification de la classe Seau:
             - Utilisation de la fonction filter_var pour simplifier le code
             - Utilisation des opérateurs ternaires

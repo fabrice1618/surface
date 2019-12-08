@@ -2,6 +2,25 @@
 Mises à jour du projet:
 
 ```
+TODO
+    - Dans les modèles:
+        - les fonctions read doivent retourner un objet
+        - les fonctions index doivent retourner un tableau d'objets
+    - Creer objet pour ville et typeLogement ?
+```
+
+```
+08/12/2019 Mise en place de la structure générale
+    - VilleModel.php et test-VilleModel.php
+    - script SQL de chargement des données de villes dans database
+    - TypeLogementModel.php et test-TypeLogementModel.php
+    - Classe Piece et test-Piece.php
+    - Prototype de PieceModel.php et test-PieceModel.php
+    - Prototype classe Logement et test-Logement.php
+    - Prototype de LogementModel.php et test-LogementModel.php
+```
+
+```
 08/12/2019 Modification de la classe UserModel
     - configuration de la base de données dans config.php
     - creation de l'utilisateur surface_user pour accéder à la BDD

@@ -1,38 +1,73 @@
 <?php
 
-function newPiece( $nom, $longueur, $largeur )
+class Piece
 {
-  $piece = array();
+    private $log_id;
+    private $nom;
+    private $longueur;
+    private $largeur;
 
-  if (
-    isset($nom, $longueur, $largeur) &&
-    is_string($nom) &&
-    is_numeric($longueur) &&
-    is_numeric($largeur) &&
-    $nom != "" &&
-    $longueur < 20 &&
-    $longueur > 0 &&
-    $largeur < 20 &&
-    $largeur > 0
-  ) {
-
-      $piece['piece'] = $nom;
-      $piece['longueur'] = $longueur;
-      $piece['largeur'] = $largeur;
-      $piece['surface'] = calculSurface($longueur, $largeur);
-
-
-    } else {
-      echo "Erreur fonction newPiece() parametres incorrects\n";
+    public function __construct( $iLogId, $sNom, $nLongueur, $nLargeur )
+    {
+        self::setLogId($iLogId);
+        self::setNom($sNom);
+        self::setLongueur( $nLongueur );
+        self::setLargeur( $nLargeur );
     }
 
-  return($piece);
-}
+    public function getLogId()
+    {
+        return($this->log_id);
+    }
 
-function calculSurface($long, $larg)
-{
+    private function setLogId($iLogId)
+    {
+        if ( is_int($iLogId) && $iLogId > 0 ) {
+            $this->log_id = $iLogId;
+        }
+    }
 
-  $surface = $long * $larg;
+    public function getNom()
+    {
+        return($this->nom);
+    }
 
-  return($surface);
+    public function setNom($sNom)
+    {
+        if ( is_string($sNom) && !empty($sNom) ) {
+            $this->nom = $sNom;
+        }
+    }
+
+    public function getLongueur()
+    {
+        return($this->longueur);
+    }
+
+    public function setLongueur( $nLongueur )
+    {
+        if ( is_numeric($nLongueur) && $nLongueur < 20 && $nLongueur > 0 ) {
+            $this->longueur = $nLongueur;
+        }
+    }
+
+    public function getLargeur()
+    {
+        return($this->largeur);
+    }
+
+    public function setLargeur( $nLargeur )
+    {
+        if ( is_numeric($nLargeur) && $nLargeur < 20 && $nLargeur > 0 ) {
+            $this->largeur = $nLargeur;
+        }
+    }
+
+    public function getSurface()
+    {
+        $surface = $this->longueur * $this->largeur;
+
+        return($surface);
+    }
+
 }

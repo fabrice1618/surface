@@ -2,6 +2,23 @@
 Mises à jour du projet:
 
 ```
+08/12/2019 Modification de la classe UserModel
+    - configuration de la base de données dans config.php
+    - creation de l'utilisateur surface_user pour accéder à la BDD
+    - regroupement des requetes en haut du script
+    - finalisation du script test-UserModel.php
+```
+
+```
+07/12/2019
+    - Creation du repertoire database
+    - ajout du script de create de la BDD v3
+    - ajout du script de creation de l'utilisateur surface_user
+    - creation du répertoire test
+    - déplacement des scripts de test dans répertoire test    
+```
+
+```
 07/12/2019
     - Creation de la classe PasswordGenerator qui génère un mot de passe suivant un schéma prédéfini
     - Adaptation de la classe User pour utiliser les nouvelles fonctionnalités

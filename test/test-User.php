@@ -1,5 +1,5 @@
 <?php
-require_once("User.php");
+require_once("../User.php");
 
 $unUser = new User("bob@example.com");
 $unUser->setDateConnexion("20191204");

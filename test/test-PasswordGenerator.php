@@ -1,5 +1,5 @@
 <?php
-require_once("PasswordGenerator.php");
+require_once("../PasswordGenerator.php");
 
 $password = new PasswordGenerator();
 echo "Password:" . $password->getPassword() . PHP_EOL;

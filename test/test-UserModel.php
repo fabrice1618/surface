@@ -7,9 +7,9 @@ require_once("../UserModel.php");
 // Ouvre la connexion DB en mode persistant
 try {
     $dbh = new PDO(
-      "mysql:host=$db_host;dbname=$db_name;charset=utf8",
-      $db_username,
-      $db_password,
+      "mysql:host=$config_DBhost;dbname=$config_DBname;charset=utf8",
+      $config_DBusername,
+      $config_DBpassword,
       array(PDO::ATTR_PERSISTENT => true)
     );
 } catch (PDOException $e) {

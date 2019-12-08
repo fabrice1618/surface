@@ -16,7 +16,7 @@ class PieceModel
       $this->dbh = $dbh;
     }
 
-    public function create( $piece )
+    public function create( $oPiece )
     {
       $iIdCree = 0;
 
@@ -27,14 +27,14 @@ class PieceModel
 
     public function read( $iId )
     {
-      $piece = new Piece;
+      $aPiece = array();
 
       // Executer la requete
 
-      return($piece);
+      return($aPiece);
     }
 
-    public function update( $iId, $piece )
+    public function update( $iId, $oPiece )
     {
         // Executer la requete
     }

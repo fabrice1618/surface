@@ -1,7 +1,7 @@
 <?php
 require_once("../Piece.php");
 
-$unePiece = new Piece( 2, "salon", 4.2, 3.5 );
+$unePiece = new Piece( rand(1,99), "salon", 4.2, 3.5 );
 
 // Affichage de la piece
 echo "La piece id " . $unePiece->getLogId() . " " . $unePiece->getNom() . PHP_EOL .

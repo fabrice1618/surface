@@ -3,9 +3,6 @@ Mises à jour du projet:
 
 ```
 TODO
-    - Dans les modèles:
-        - les fonctions read doivent retourner un objet
-        - les fonctions index doivent retourner un tableau d'objets
     - Creer objet pour ville et typeLogement ?
 ```
 

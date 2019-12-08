@@ -2,7 +2,7 @@
 require_once("User.php");
 
 // Les requetes sont regroupées en haut du script pour faciliter la maintenance
-// Utilisation de define pour definir les requetes
+// Utilisation de define pour définir les requetes
 define('QUERY_INSERT', "INSERT INTO user (usr_id, usr_email, usr_password, usr_date_connexion) VALUES (NULL, :usr_email, :usr_password, :usr_date_connexion) " );
 define('QUERY_SELECT', "SELECT * FROM user WHERE usr_id = :usr_id " );
 define('QUERY_UPDATE', "UPDATE user SET usr_email = :usr_email, usr_password = :usr_password, usr_date_connexion = :usr_date_connexion WHERE usr_id = :usr_id" );
@@ -42,7 +42,7 @@ class UserModel
     $stmt1 = $this->dbh->prepare( QUERY_SELECT );
     $stmt1->bindValue(':usr_id', $iId, PDO::PARAM_INT);
     if ( $stmt1->execute() ) {
-        $aUser = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+        $aUser = $stmt1->fetch(PDO::FETCH_ASSOC);
     }
 
     return($aUser);

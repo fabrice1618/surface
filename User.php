@@ -14,17 +14,16 @@ class User
       $this->email = $sEmail;
     }
 
-    $password = new PasswordGenerator();
-    $this->password = $password->getPassword();
-    $this->password_hash = $password->getPasswordHash();
-    unset($password);
+    $passwordGenerator = new PasswordGenerator();
+    $this->password = $passwordGenerator->getPassword();
+    $this->password_hash = $passwordGenerator->getPasswordHash();
+    unset($passwordGenerator);
   }
 
   public function getEmail()
   {
     return($this->email);
   }
-
 
     public function getPassword()
     {
@@ -38,16 +37,16 @@ class User
 
   public function newPassword()
   {
-      $password = new PasswordGenerator();
-      $this->password = $password->getPassword();
-      $this->password_hash = $password->getPasswordHash();
-      unset($password);
+      $passwordGenerator = new PasswordGenerator();
+      $this->password = $passwordGenerator->getPassword();
+      $this->password_hash = $passwordGenerator->getPasswordHash();
+      unset($passwordGenerator);
   }
 
   public function setDateConnexion( $sDate )
   {
 
-      // utilisation de l'operateur de transtypage (int) qui converti la valeur en integer
+      // utilisation de l'operateur de transtypage (int) conversion de la valeur en integer
     if (
       is_string($sDate) &&
       strlen($sDate) == 8 &&

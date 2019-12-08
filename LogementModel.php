@@ -27,11 +27,11 @@ class LogementModel
 
     public function read( $iId )
     {
-      $logement = new Logement;
+      $aLogement = array();
 
       // Executer la requete
 
-      return($logement);
+      return($aLogement);
     }
 
     public function update( $iId, $logement )

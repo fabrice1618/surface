@@ -34,7 +34,7 @@ class Piece
 
     public function setNom($sNom)
     {
-        if ( is_string($sNom) && !empty($sNom) ) {
+        if ( isset($sNom) && is_string($sNom) && !empty($sNom) ) {
             $this->nom = $sNom;
         }
     }

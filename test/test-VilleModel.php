@@ -33,16 +33,9 @@ echo "\nUpdate ville $iId" . PHP_EOL;
 $villeModel->update($iId, "Une ville modifiée");
 print_r( $villeModel->read($iId) );
 
-// Affichage des User dans la table
-echo "\nAffichage de toutes les Villes de la table\n";
-print_r( $villeModel->index() );
-
 // effacement d'un User
 echo "\nEffacement de ville $iId\n";
 $villeModel->delete($iId);
-print_r( $villeModel->index() );
-
-
 
 
 $dbh = null;

@@ -50,7 +50,7 @@ class User
     if (
       is_string($sDate) &&
       strlen($sDate) == 8 &&
-      checkdate ( (int)substr($sDate, 4, 2), (int)substr($sDate, 6, 2), (int)substr($sDate, 0, 4) )
+      checkdate( (int)substr($sDate, 4, 2), (int)substr($sDate, 6, 2), (int)substr($sDate, 0, 4) )
     ) {
       $this->date_connexion = $sDate;
     }

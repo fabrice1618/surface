@@ -1,7 +1,7 @@
 <?php
 require_once("../User.php");
 
-$unUser = new User("bob@example.com");
+$unUser = new User("bob@leponge.com");
 $unUser->setDateConnexion("20191204");
 
 // Affichage des informations utilisateurs

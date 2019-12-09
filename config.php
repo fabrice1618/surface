@@ -3,4 +3,4 @@
 $config_DBhost = 'localhost';
 $config_DBname = 'surface';
 $config_DBusername = 'surface_user';
-$config_DBpassword = 'biOszPWxspDAQRL2';
+$config_DBpassword = 'CTxqqk7DCHDcmLfd';

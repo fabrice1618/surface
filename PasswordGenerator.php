@@ -18,6 +18,7 @@ class PasswordGenerator
         self::MINUSCULE,
         self::MINUSCULE,
         self::MINUSCULE,
+        self::SYMBOLE,
         self::CHIFFRE,
         self::CHIFFRE,
         self::CHIFFRE,
@@ -50,6 +51,7 @@ class PasswordGenerator
         foreach(self::PASSWORD_SCHEME as $nTypeChar ) {
             switch ($nTypeChar) {
                 case self::MAJUSCULE:
+                    //$sPassword = $sPassword . self::majusculeAleatoire();
                     $sPassword .= self::majusculeAleatoire();
                     break;
                 case self::MINUSCULE:

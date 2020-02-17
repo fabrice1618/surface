@@ -1,20 +1,60 @@
+<?php
+$sBasepath = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'].'/': '../';
+require_once($sBasepath."app/core/autoload.php");
 
-    <?php
+session_start();
+$oApp = new App();
+$oApp->openDatabase();
 
-    include "template/headerindex.php";
+//  Routeur
+
+//echo "sRequestURI:$oApp->request_uri\n";
+//echo "sRequestQuery:$oApp->request_query\n";
+
+
+switch ($oApp->request_uri) {
+    case '/':
+        $sControllerName = 'HomeController';
+        break;
+    case '/connexion':
+    case '/checklogin':
+    case '/forgotpasswd':
+    case '/newpasswd':
+    case '/logout':
+        $sControllerName = 'LoginController';
+        break;
+    case '/inscription':
+    case '/inscription-save':
+        $sControllerName = 'InscriptionController';
+        break;
+    case '/logement':
+    case '/logement-add':
+    case '/logement-edit':
+    case '/logement-delete':
+    case '/logement-save':
+            $sControllerName = 'LogementController';
+        break;
+    case '/contact':
+        $sControllerName = 'ContactController';
+        break;
+    case '/eco':
+        $sControllerName = 'EcoController';
+        break;
+    case '/rgpd':
+        $sControllerName = 'RgpdController';
+        break;
+
+    default:
+        $sControllerName = 'HomeController';
+        break;
+}
+
+// transfert du controle au controller
+$oController = new $sControllerName();
+$oController->run();
+
+
+
+
+
 ?>
-    <body>
-        <div class="container-fluid ">
-        
-        <div class="col-bg-12">
-            <h1>Présentation</h1>
-            <p>Eximendam nulla comes distinebatur memorabili dispersique longius fama Nebridius memorabili Gallum militaribus solent militaribus memorabili civitatem montium Caesarem contractis quo re solent gesta dispersique adsiduae Nebridius latrones et quoniam dispersique solent petiere permovissent memorabili montium eximendam ingenti et nulla celsorum avia civitatem distinebatur studio distinebatur periculo properabat latrones longius petiere.</p>
-        </div>
-        </div>
-    </body>
-    <?php
-
-include "template/footer.php";
-
-    ?>
-</html>        

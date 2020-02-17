@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !/public/style/
+RewriteCond %{REQUEST_FILENAME} !/public/img/
+RewriteRule .* public/index.php

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 14 fév. 2020 à 12:29
+-- Généré le :  sam. 07 déc. 2019 à 17:15
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `surface`
 --
+CREATE DATABASE IF NOT EXISTS `surface` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `surface`;
 
 -- --------------------------------------------------------
 
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `logement` (
   KEY `fk_usr_id` (`usr_id`),
   KEY `fk_typ_id` (`typ_id`),
   KEY `fk_logement_ville1_idx` (`vil_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -58,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `piece` (
   `pce_larg` decimal(4,2) NOT NULL,
   PRIMARY KEY (`pce_id`),
   KEY `fk_log_id` (`log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -71,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `type_logement` (
   `typ_id` int(11) NOT NULL AUTO_INCREMENT,
   `typ_desc` varchar(250) NOT NULL,
   PRIMARY KEY (`typ_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -85,10 +87,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `usr_email` varchar(250) NOT NULL,
   `usr_password` varchar(250) NOT NULL,
   `usr_date_connexion` varchar(8) NOT NULL,
-  `usr_role` varchar(250) NOT NULL,
   PRIMARY KEY (`usr_id`),
   UNIQUE KEY `usr_email` (`usr_email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 

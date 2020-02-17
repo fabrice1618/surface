@@ -1,11 +1,11 @@
 .form-control{
     width: 30%;
-    
+
 }
 
 .dropdown-divider{
     width: 30%;
-    
+
 }
 
 .container-fluid{
@@ -13,7 +13,7 @@
 }
 
 .container{
-    background-color: black;
+    background-color: grey;
     margin-top: 50px;
 }
 /* style du bouton */
@@ -26,25 +26,25 @@
     margin: 30px;
     margin-top: 50px;
   }
-  
-  /* On positionne (en relatif) le conteneur du menu déroulant 
-    pour pouvoir positionner le contenu de la liste juste 
+
+  /* On positionne (en relatif) le conteneur du menu déroulant
+    pour pouvoir positionner le contenu de la liste juste
     en dessous du span */
   .menu-deroulant {
     position: relative;
     display: inline-block;
   }
-  
-  /* Contenu déroulant (caché par défaut) 
+
+  /* Contenu déroulant (caché par défaut)
      et positionné par rapport au conteneur */
   .menu-deroulant div {
     display: none; /* caché */
     position: absolute;
     background-color: #F9F9F9; /* gris pale */
-    min-width: 160px; 
+    min-width: 160px;
     z-index: 1; /* en avant */
   }
-  
+
   /* Les liens du menu déroulant */
   div div a {
     color: black;
@@ -52,7 +52,7 @@
     text-decoration: none; /* on enlève le surlignement */
     display: block; /* on les affiche */
   }
-  
+
   /* Au survol du menu, on affiche le contenu déroulant (qui était caché) */
   .menu-deroulant:hover div {
     display: block;

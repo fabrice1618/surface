@@ -75,7 +75,7 @@ class App
               $oDBConfig->dsn,
               $oDBConfig->user,
               $oDBConfig->password,
-              array(PDO::ATTR_PERSISTENT => true)
+              $oDBConfig->options
             );
             $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -119,7 +119,7 @@ class App
             !empty($sEmail) &&
             !empty($sPasswordHash) &&
             filter_var($sEmail, FILTER_VALIDATE_EMAIL) !== false &&
-            App::checkPassword($sEmail,$sPasswordHash)
+            Auth::checkPassword($sEmail,$sPasswordHash)
             ) {
           $this->autologin = [
               'autologin'=>true,

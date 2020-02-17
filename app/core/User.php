@@ -12,19 +12,20 @@ define('QUERY_INDEX',  "SELECT * FROM user" );
 
 class User extends Model
 {
-  private const FIELD_LIST = [
-    'usr_id'=>'validateId',
-    'usr_email'=>'validateUsr_email',
-    'usr_password'=>'validateString',
-    'usr_date_connexion'=>'alwaysTrue',
-    'usr_role'=>'validateUsr_role'
-];
 // Temporaire pendant les tests: impossible d'envoyer email alors on stocke password dans date_connexion
 //    'usr_date_connexion'=>'validateUsr_date_connexion',
 
 
   public function __construct()
   {
+    $this->field_list = [
+      'usr_id'=>'validateId',
+      'usr_email'=>'validateUsr_email',
+      'usr_password'=>'validateString',
+      'usr_date_connexion'=>'alwaysTrue',
+      'usr_role'=>'validateUsr_role'
+  ];
+  
     parent::__construct();
   }
 

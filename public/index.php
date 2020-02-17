@@ -32,7 +32,14 @@ switch ($oApp->request_uri) {
     case '/logement-edit':
     case '/logement-delete':
     case '/logement-save':
-            $sControllerName = 'LogementController';
+        $sControllerName = 'LogementController';
+        break;
+    case '/piece':
+    case '/piece-add':
+    case '/piece-edit':
+    case '/piece-delete':
+    case '/piece-save':
+        $sControllerName = 'PieceController';
         break;
     case '/contact':
         $sControllerName = 'ContactController';

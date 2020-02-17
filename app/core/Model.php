@@ -2,7 +2,7 @@
 
 class Model
 {
-  protected const FIELD_LIST = ['example_field'=>'validate_function'];
+  protected $field_list = ['example_field'=>'validate_function'];
 
   protected $data = null;
 
@@ -17,10 +17,10 @@ class Model
 
   public function __set($sName, $value)
   {
-      if (! array_key_exists($sName, self::FIELD_LIST)) {
+      if (! array_key_exists($sName, $this->field_list)) {
           throw new \Exception("User: error property $sName not found", 1);
       }
-      $sValidator = self::FIELD_LIST[$sName];
+      $sValidator = $this->field_list[$sName];
       if (empty($sValidator) ) {
           $this->data[$sName] = $value;
       } else {
@@ -35,7 +35,7 @@ class Model
 
   public function __get($sName)
   {
-      if (! array_key_exists($sName, self::FIELD_LIST )) {
+      if (! array_key_exists($sName, $this->field_list )) {
           throw new \Exception("User: undefined property $sName", 1);
       }
       if (! array_key_exists($sName, $this->data)) {
@@ -62,7 +62,7 @@ class Model
 
   public function alwaysTrue($value)
   {
-      return($true);
+      return(true);
   }
 
   private function validateId($iId)

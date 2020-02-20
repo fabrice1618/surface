@@ -2,7 +2,6 @@
 
 class InscriptionView extends View
 {
-    private $alert_template = '';
 
     public function __construct()
     {

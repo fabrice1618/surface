@@ -3,38 +3,50 @@
 class PieceController extends Controller
 {
 
-    public function __construct()
+    public function run( $sAction )
     {
         global $oApp;
-
-        $sRequestURI = $oApp->request_uri;
-
-      
-//        $sUserEmail = $_POST['usr_email'] ?? '';
-
-        switch ($sRequestURI) {
-            case '/piece':
+        
+        switch ($sAction) {
+            case 'piece':
                 $this->view = new PieceView();
+                $this->view->render();
+                $this->exit_code = self::EXIT_DONE;
                 break;
-            case '/piece-edit':
+
+            case 'piece-edit':
                 $this->view = new PieceEditView();
+                $this->view->render();
+                $this->exit_code = self::EXIT_DONE;
                 break;
-            case '/piece-delete':
-                $this->view = new PieceView();
+    
+            case 'piece-delete':
+                // Enregistrement des donnes
+                
+                $this->exit_code = self::EXIT_REDIRECT;
+                $this->redirect_path = '/piece';
+                $this->http_response_code = 200;
                 break;
-            case '/piece-add':
+
+            case 'piece-add':
                 $this->view = new PieceEditView();
+                $this->view->render();
+                $this->exit_code = self::EXIT_DONE;
                 break;
-            case '/piece-save':
-                $this->view = new PieceView();
+            
+            case 'piece-save':
+                // Enregistrement des donnes
+                
+                $this->exit_code = self::EXIT_REDIRECT;
+                $this->redirect_path = '/piece';
+                $this->http_response_code = 200;
+
+                break;
+
+            default:
+                throw new \Exception(__CLASS__.": Error action '$sAction' not found", 1);
                 break;
         }
-
-    }
-
-    public function run()
-    {
-        $this->view->render();
     }
 
 

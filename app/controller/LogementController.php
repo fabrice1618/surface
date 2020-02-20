@@ -3,40 +3,50 @@
 class LogementController extends Controller
 {
 
-    public function __construct()
+    public function run( $sAction )
     {
         global $oApp;
-
-        $sRequestURI = $oApp->request_uri;
-
-      
-//        $sUserEmail = $_POST['usr_email'] ?? '';
-
-        switch ($sRequestURI) {
-            case '/logement':
+        
+        switch ($sAction) {
+            case 'logement':
                 $this->view = new LogementView();
+                $this->view->render();
+                $this->exit_code = self::EXIT_DONE;
                 break;
-            case '/logement-edit':
+
+            case 'logement-edit':
                 $this->view = new LogementEditView();
+                $this->view->render();
+                $this->exit_code = self::EXIT_DONE;
                 break;
-            case '/logement-delete':
-                $this->view = new LogementView();
+    
+            case 'logement-delete':
+                // Enregistrement des donnes
+                
+                $this->exit_code = self::EXIT_REDIRECT;
+                $this->redirect_path = '/logement';
+                $this->http_response_code = 200;
                 break;
-            case '/logement-add':
+
+            case 'logement-add':
                 $this->view = new LogementEditView();
+                $this->view->render();
+                $this->exit_code = self::EXIT_DONE;
                 break;
-            case '/logement-save':
-                $this->view = new LogementView();
+            
+            case 'logement-save':
+                // Enregiqtrement des donnes
+                
+                $this->exit_code = self::EXIT_REDIRECT;
+                $this->redirect_path = '/logement';
+                $this->http_response_code = 200;
+
+                break;
+
+            default:
+                throw new \Exception(__CLASS__.": Error action '$sAction' not found", 1);
                 break;
         }
-
     }
-
-    public function run()
-    {
-        $this->view->render();
-    }
-
-
 
 }

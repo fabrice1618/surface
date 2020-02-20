@@ -3,16 +3,21 @@
 class HomeController extends Controller
 {
 
-    public function __construct()
+    public function run( $sAction )
     {
-//        parent::__contruct();
-//        echo "inside HomeController\n";
-        $this->view = new HomeView();
-    }
+        global $oApp;
+        
+        switch ($sAction) {
+            case 'home':
+                $this->view = new HomeView();
+                $this->view->render();
+                $this->exit_code = self::EXIT_DONE;
+                break;
 
-    public function run()
-    {
-        $this->view->render();
+            default:
+                throw new \Exception(__CLASS__.": Error action '$sAction' not found", 1);
+                break;
+        }
     }
 
 }

@@ -50,7 +50,7 @@ class Logement extends Model
       $stmt1->bindValue(':typ_id', $this->typ_id, PDO::PARAM_INT);
       if ( $stmt1->execute() ) {
         // recuperation de l'ID de la ligne crée
-        $iIdCree = $this->dbh->lastInsertId();
+        $iIdCree = (int)$this->dbh->lastInsertId();
       }
       $this->log_id = $iIdCree;
 

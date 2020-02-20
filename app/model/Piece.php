@@ -54,7 +54,7 @@ class PieceModel
       $stmt1->bindValue(':pce_larg', $this->pce_larg, PDO::PARAM_STR);
       if ( $stmt1->execute() ) {
         // recuperation de l'ID de la ligne crée
-        $iIdCree = $this->dbh->lastInsertId();
+        $iIdCree = (int)$this->dbh->lastInsertId();
       }
 
       $this->pce_id = $iIdCree;

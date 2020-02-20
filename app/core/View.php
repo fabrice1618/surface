@@ -7,7 +7,10 @@ Class View
     private $page_description = "Description de la page";
     private $page_menu = "";
     private $page_content = "";
-    private $footer_template = "";
+//    private $footer_template = "";
+    private $footer_content = "";
+
+    public $data = null;
 
     public function render()
     {
@@ -23,12 +26,28 @@ Class View
         echo('<body>'.PHP_EOL);
         echo($this->page_menu);
         echo($this->page_content);
-        echo($this->readTemplate( $this->footer_template ));
+        echo($this->footer_content );
         $this->debugPanel();
         echo('</body>'.PHP_EOL);
         echo('</html>');
         // envoi le buffer sur la sortie puis libere le buffer
         ob_end_flush();
+    }
+
+    public function setData( $sKey, $value )
+    {
+        if ( is_string($sKey) && ! empty($sKey) ) {
+            $this->data[$sKey] = $value;
+        }
+    }
+
+    public function getData( $sKey )
+    {
+        if ( ! isset($sKey) ) {
+            throw new \Exception("View: error getData(\"$sKey\") not exist", 1);
+        }
+
+        return($this->data[$sKey]);
     }
 
     public function setPageTitle( $sPageTitle )
@@ -56,16 +75,18 @@ Class View
         $this->page_content = $sPageContent;
     }
 
-    public function setFooterTemplate( $sFooterTemplate )
+    public function setFooterContent( $sFooterContent )
     {
-        $this->footer_template = $sFooterTemplate;
+        $this->footer_content = $sFooterContent;
     }
 
     protected function readTemplate( $sTemplateName )
     {
+        global $oApp;
+
         $sTemplate = "";
         if (!empty($sTemplateName)) {
-            $sFile = '../template/'.$sTemplateName;
+            $sFile = $oApp->base_path . 'app/template/'.$sTemplateName;
             if (file_exists($sFile) && is_file($sFile)) {
                 $sTemplate = file_get_contents($sFile);
                 if ($sTemplate === false) {

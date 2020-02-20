@@ -28,7 +28,7 @@ public function __construct()
       $stmt1->bindValue(':typ_desc', $this->typ_desc, PDO::PARAM_STR);
       if ( $stmt1->execute() ) {
         // recuperation de l'ID de la ligne crée
-        $iIdCree = $this->dbh->lastInsertId();
+        $iIdCree = (int)$this->dbh->lastInsertId();
       }
 
       $this->typ_id = $iIdCree;

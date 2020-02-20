@@ -26,9 +26,13 @@ class Auth
     // une méthode static peut etre appellée sans instance
     public static function Authentification( $sEmail, $sPassword )
     {
+        global $oApp;
+
         $lReturn = false;
-        if ( !empty($sEmail) && !empty($sPassword) ) {
-            $lReturn = Auth::checkPassword( $sEmail, $sPassword );
+        if ( Auth::checkPassword( $sEmail, $sPassword ) ) {
+            $lReturn = true;
+            $oApp->user = new User;
+            $oApp->user->readByEmail($sEmail);
         }
 
         return($lReturn);
@@ -81,7 +85,7 @@ class Auth
                     $sPassword .= self::symboleAleatoire();
                     break;
                 default:
-                    $sPassword .= self::symboleAleatoire();
+                    throw new \Exception("Auth: Error invalid password scheme", 1);
                     break;
             }
         }
@@ -107,6 +111,118 @@ class Auth
     private static function symboleAleatoire()
     {
         return( self::SYMBOLES[rand(0, 9)] );
+    }
+
+    // Generation d'un mot de passe suivant la constante PASSWORD_SCHEME
+    public static function validatePassword($sPassword)
+    {
+        $lReturn = false;
+        if (
+            is_string($sPassword) && 
+            ! empty($sPassword) && 
+            strlen($sPassword) == count(self::PASSWORD_SCHEME)
+        ) {
+            $lReturn = true;
+            foreach(self::PASSWORD_SCHEME as $nIndex => $nTypeChar ) {
+                switch ($nTypeChar) {
+                    case self::MAJUSCULE:
+                        if (! self::isMajuscule($sPassword[$nIndex])) {
+                            $lReturn = false;
+                        }
+                        break;
+                    case self::MINUSCULE:
+                        if (! self::isMinuscule($sPassword[$nIndex])) {
+                            $lReturn = false;
+                        }
+                        break;
+                    case self::CHIFFRE:
+                        if (! self::isChiffre($sPassword[$nIndex])) {
+                            $lReturn = false;
+                        }
+                        break;
+                    case self::SYMBOLE:
+                        if (! self::isSymbole($sPassword[$nIndex])) {
+                            $lReturn = false;
+                        }
+                        break;
+                    default:
+                        $lReturn = false;
+                        throw new \Exception("Auth: Error invalid character in password", 1);
+                        break;
+                }
+            }
+        } else {
+            throw new \Exception("Auth: Error invalid password", 1);
+        }
+
+        return($lReturn);
+    }
+
+    private static function isMajuscule($sChar)
+    {
+
+        $lReturn = false;
+        if (
+            is_string($sChar) &&
+            ! empty($sChar) && 
+            strlen($sChar) == 1 &&
+            ord($sChar) >= ord('A') &&
+            ord($sChar) <= ord('Z')
+        ) {
+            $lReturn = true;
+        } 
+
+        return($lReturn);
+    }
+
+    private static function isMinuscule($sChar)
+    {
+
+        $lReturn = false;
+        if (
+            is_string($sChar) &&
+            ! empty($sChar) && 
+            strlen($sChar) == 1 &&
+            ord($sChar) >= ord('a') &&
+            ord($sChar) <= ord('z')
+        ) {
+            $lReturn = true;
+        } 
+
+        return($lReturn);
+    }
+
+    private static function isChiffre($sChar)
+    {
+
+        $lReturn = false;
+        if (
+            is_string($sChar) &&
+            ! empty($sChar) && 
+            strlen($sChar) == 1 &&
+            ord($sChar) >= ord('0') &&
+            ord($sChar) <= ord('9')
+        ) {
+            $lReturn = true;
+        } 
+        
+        return($lReturn);
+    }
+
+    private static function isSymbole($sChar)
+    {
+
+        $lReturn = false;
+        if (
+            is_string($sChar) &&
+            ! empty($sChar) && 
+            strlen($sChar) == 1 &&
+            in_array($sChar, self::SYMBOLES)
+        ) {
+            $lReturn = true;
+        } 
+
+        return($lReturn);
     }
 
 }

@@ -29,7 +29,7 @@ class Ville extends Model
       $stmt1->bindValue(':vil_desc', $this->vil_desc, PDO::PARAM_STR);
       if ( $stmt1->execute() ) {
         // recuperation de l'ID de la ligne crée
-        $iIdCree = $this->dbh->lastInsertId();
+        $iIdCree = (int)$this->dbh->lastInsertId();
       }
 
     // MAJ de l'instance avec le usr_id de la database

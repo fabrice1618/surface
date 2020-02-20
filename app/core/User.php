@@ -1,6 +1,4 @@
 <?php
-//require_once("PasswordGenerator.php");
-
 // Les requetes sont regroupées en haut du script pour faciliter la maintenance
 // Utilisation de define pour définir les requetes
 define('QUERY_INSERT', "INSERT INTO user (usr_id, usr_email, usr_password, usr_date_connexion, usr_role) VALUES (NULL, :usr_email, :usr_password, :usr_date_connexion, :usr_role) " );
@@ -18,54 +16,16 @@ class User extends Model
 
   public function __construct()
   {
+    
     $this->field_list = [
-      'usr_id'=>'validateId',
-      'usr_email'=>'validateUsr_email',
-      'usr_password'=>'validateString',
-      'usr_date_connexion'=>'alwaysTrue',
-      'usr_role'=>'validateUsr_role'
-  ];
-  
+      'usr_id'=>'Validate::id',
+      'usr_email'=>'Validate::email',
+      'usr_password'=>'Validate::checkstring',
+      'usr_date_connexion'=>'Validate::alwaysTrue',
+      'usr_role'=>'Validate::role'
+      ]; 
+    
     parent::__construct();
-  }
-
-  
-  private function validateUsr_email($sEmail)
-  {
-      $lReturn = false;
-      if ( filter_var($sEmail, FILTER_VALIDATE_EMAIL) !== false ) {
-        $lReturn = true;
-      }
-
-      return($lReturn);
-  }
-
-  private function validateUsr_date_connexion($sDate)
-  {
-      $lReturn = false;
-      // utilisation de l'operateur de transtypage (int) conversion de la valeur en integer
-    if (
-      is_string($sDate) &&
-      strlen($sDate) == 8 &&
-      checkdate ( (int)substr($sDate, 4, 2), (int)substr($sDate, 6, 2), (int)substr($sDate, 0, 4) )
-        ) {
-        $lReturn = true;
-    }
-
-      return($lReturn);
-  }
-
-  private function validateUsr_role($sRole)
-  {
-      $lReturn = false;
-    if (
-      is_string($sRole) &&
-      in_array( $sRole, ["user","admin"] )
-        ) {
-        $lReturn = true;
-    }
-
-      return($lReturn);
   }
 
   public function newPassword()
@@ -75,7 +35,6 @@ class User extends Model
 
       return($sNewPassword);
   }
-
 
   public function create()
   {
@@ -89,7 +48,7 @@ class User extends Model
     $stmt1->bindValue(':usr_role', $this->usr_role, PDO::PARAM_STR);
     if ( $stmt1->execute() ) {
       // recuperation de l'ID de la ligne crée
-      $iIdCree = $this->dbh->lastInsertId();
+      $iIdCree = (int)$this->dbh->lastInsertId();
     }
 
     // MAJ de l'instance avec le usr_id de la database

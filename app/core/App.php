@@ -4,44 +4,50 @@ class App
 {
     private const DUREE_COOKIE = 60*60*24*2; // 2 Jours
     private const DUREE_SESSION = 60*15; // 15 minutes
+    public const EXIT_DONE = 0;
+    public const EXIT_REDIRECT = 1;
 
     public $base_path = '';
     public $context = null;
-    public $request_uri = '';
-    public $request_query = '';
-    public $session_id = null;
+    public $exit_code = null;
+    public $exit_data = null;
+    public $redirect_path = '';
+    public $http_response_code = 200;
+
+//    public $request_path = '';
+//    public $request_arg = [];
+//    public $request_uri = '';
+//    public $request_query = '';
+    public $phpsessid = null;
     public $session;
-    public $last_active = 0;
+//    public $last_active = 0;
+    public $user = null;
     public $autologin = [
         'autologin' => false,
         'autologin_user'=>'',
         'autologin_hash'=>''
         ];
+//    public $controller_name;
+//    public $controller_action;
+    public $controller = null;
     public $database = null;
     public $dbconfig = 'dbconfig.json';
 
     public function __construct()
     {
+        global $sBasepath;
+        global $oRouter;
+
+        $sBasepath = $sBasepath ?? '../';
+
         $this->context = isset($_SERVER['argv']) ? 'CLI' : 'WEB';
-        $this->base_path = ($this->context == 'WEB') ? $_SERVER['DOCUMENT_ROOT'].'/' : '../';
+        $this->base_path = $sBasepath;
 
         if ($this->context == 'WEB') {
+            $oRouter->parseRequestURI($_SERVER['REQUEST_URI']);
+
             // Gestion de la session
-            $sUrl = $_SERVER['REQUEST_URI'] ?? '/';
-            $aFragment = parse_url($sUrl);
-            if (isset($aFragment['path'])) {
-                $this->request_uri = $aFragment['path'];
-            } else {
-                $this->request_uri = '/';
-            }
-            if (isset($aFragment['query'])) {
-                $this->request_query = $this->analyseQuery($aFragment['query']);
-            } else {
-                $this->request_query = '';
-            }
-
-            $this->session_id = $_COOKIE['PHPSESSID'] ?? null;
-
+            $this->phpsessid = $_COOKIE['PHPSESSID'] ?? null;
             $this->session = $_SESSION;
             $this->readCookiesAutologin();
         }
@@ -91,16 +97,34 @@ class App
         }
     }
 
-    public function analyseQuery($sQuery)
+    public function initController()
     {
-        $aReturn = array();
+        global $oRouter;
 
-        $aParam = explode('&', $sQuery);
-        foreach ($aParam as $sParam) {
-            $aVal = explode('=', $sParam);
-            $aReturn[$aVal[0]]=$aVal[1];            
-        }
-        return($aReturn);
+        // Instancie le controller
+        $sControllerName = $oRouter->controller_name;
+        $this->controller = new $sControllerName();
+
+    }
+
+    public function runController()
+    {
+        global $oRouter;
+
+        // Execute l'action dans le controller
+        $this->controller->run( $oRouter->controller_action );
+
+        $this->exit_code = $this->controller->exit_code;
+        $this->exit_data = $this->controller->exit_data;
+        $this->redirect_path = $this->controller->redirect_path;
+        $this->http_response_code = $this->controller->http_response_code;
+        
+    }
+
+    public function stopController()
+    {
+        // Stoppe le controleur
+        unset($this->controller);
     }
 
     public function saveAutologin($lAutologin, $sEmail, $sPassword )

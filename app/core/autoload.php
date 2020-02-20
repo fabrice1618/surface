@@ -3,7 +3,6 @@
 // Remarquer que l'autoloader utilise une fonction anomyme
 // voir documentation https://www.php.net/manual/en/language.oop5.autoload.php
 
-// Liste des dossiers où sont stockées les classes
 define('DIRECTORY_LIST', [
   'app/core',
   'app/controller',
@@ -18,15 +17,20 @@ spl_autoload_register( function ($sClassname) {
         throw new \Exception("Autoload: global \$sBasepath not defined", 1);
     }
 
-    $lLoaded = false;
+    // Liste des dossiers où sont stockées les classes
+    $aDirectoryList = [
+        'app/core',
+        'app/controller',
+        'app/model',
+        'app/view'
+        ];
+    $nIndexMax = count($aDirectoryList);
 
+    $lLoaded = false;
     $nIndex = 0;
-    $nIndexMax = count(DIRECTORY_LIST);
     while (!$lLoaded && ($nIndex<$nIndexMax)) {
 
-        $sDir = $sBasepath. DIRECTORY_LIST[$nIndex];
-        $sFile = $sDir.'/'.$sClassname.'.php';
-//        echo "autoload: $sFile\n";
+        $sFile = $sBasepath. $aDirectoryList[$nIndex].'/'.$sClassname.'.php';
         if (file_exists($sFile)) {
             // Class file found
             $lLoaded = true;

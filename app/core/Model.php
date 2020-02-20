@@ -24,13 +24,12 @@ class Model
       if (empty($sValidator) ) {
           $this->data[$sName] = $value;
       } else {
-          if ( $this->$sValidator($value) ) {
+          if ( $sValidator($value) ) {
               $this->data[$sName] = $value;
           } else {
               throw new \Exception("User: error property $sName incorrect value $value", 1);
           }
       }
-
   }
 
   public function __get($sName)
@@ -49,32 +48,5 @@ class Model
   {
     return($this->data);
   }
-
-  public function validateString($sString)
-  {
-      $lReturn = false;
-      if ( is_string($sString) && !empty($sString) ) {
-        $lReturn = true;
-      }
-
-      return($lReturn);
-  }
-
-  public function alwaysTrue($value)
-  {
-      return(true);
-  }
-
-  private function validateId($iId)
-  {
-      $lReturn = false;
-
-      if ( is_int($iId) && $iId > 0 ) {
-        $lReturn = true;
-      }
-
-      return($lReturn);
-  }
-
 
 }

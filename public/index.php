@@ -9,17 +9,14 @@ require_once($sBasepath."/app/core/autoload.php");
 session_start();
 $oRouter = new Router();
 $oApp = new App();
+// Gestion de la session
+$oApp->user_session = new UserSession();
+$oApp->app_root_url = "/logement";
 
 //  Routeur
 // Ajout des routes (request_path, controller, action)
+$oRouter->addCoreRoutes();
 $oRouter->addRoute('/',                    'HomeController',           'home');
-$oRouter->addRoute('/connexion',           'LoginController',          'login');
-$oRouter->addRoute('/checklogin',          'LoginController',          'checklogin');
-$oRouter->addRoute('/forgotpasswd',        'LoginController',          'forgotpasswd');
-$oRouter->addRoute('/newpasswd',           'LoginController',          'newpasswd');
-$oRouter->addRoute('/logout',              'LoginController',          'logout');
-$oRouter->addRoute('/inscription',         'InscriptionController',    'register');
-$oRouter->addRoute('/inscription-save',    'InscriptionController',    'register-save');
 $oRouter->addRoute('/logement',            'LogementController',       'logement');
 $oRouter->addRoute('/logement-add',        'LogementController',       'logement-add');
 $oRouter->addRoute('/logement-edit',       'LogementController',       'logement-edit');
@@ -33,24 +30,14 @@ $oRouter->addRoute('/piece-save',          'PieceController',          'piece-sa
 $oRouter->addRoute('/contact',             'ContactController',        'contact');
 $oRouter->addRoute('/eco',                 'EcoController',            'eco');
 $oRouter->addRoute('/rgpd',                'RgpdController',           'rgpd');
-$oRouter->addRoute('default',              'err404Controller',         'err404');
 
+// Recherche de la route dans request_path et initialise controller_name et controller_action
+$oRouter->matchRoute();
 
-// Boucle principale
-// Les redirections sont correctement gérées et les codes de réponse HTTP retournés
-do {
-    // Recherche de la route dans request_path et initialise controller_name et controller_action
-    $oRouter->matchRoute();
+// Initialise le controller et execute l'action
+$oApp->runController($oRouter->controller_name, $oRouter->controller_action);
 
-    // Initialise le controller et execute l'action
-    $oApp->initController();
-    $oApp->runController();
-    $oApp->stopController();
-
-    if ($oApp->exit_code === App::EXIT_REDIRECT) {
-//        $sRedirect = "Location: http://".$_SERVER['HTTP_HOST'].$oApp->redirect_path;
-//        header( $sRedirect,true, $oApp->http_response_code );
-        $oRouter->request_path = $oApp->redirect_path;
+if ($oApp->exit_code === App::EXIT_REDIRECT) {
+    header( "Location: http://".$_SERVER['HTTP_HOST'].$oApp->redirect_path );
     }
-} while ($oApp->exit_code !== App::EXIT_DONE);
 

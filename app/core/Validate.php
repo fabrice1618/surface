@@ -3,68 +3,75 @@
 class Validate
 {
 
-    public static function email($sEmail)
+    public static function email($param)
     {
-        $lReturn = false;
-        if ( filter_var($sEmail, FILTER_VALIDATE_EMAIL) !== false ) {
-          $lReturn = true;
+        if ( filter_var($param, FILTER_VALIDATE_EMAIL) === false ) {
+          throw new Exception(__CLASS__.": email not valid ($param) ");
         }
-  
-        return($lReturn);
-    }
-  
-    public static function checkstring($sString)
-    {
-        $lReturn = false;
-        if ( is_string($sString) && !empty($sString) ) {
-          $lReturn = true;
-        }
-  
-        return($lReturn);
-    }
-  
-    public static function alwaysTrue($value)
-    {
         return(true);
     }
   
-    public static function id($iId)
+    public static function checkstring($param)
     {
-        $lReturn = false;
+      if (! is_string($param) ) {
+        throw new Exception(__CLASS__.": string not valid ($param) ");
+      }
+      return( true );
+    }
+
+    public static function checkbool($param)
+    {
+      if (! is_bool($param) ) {
+        throw new Exception(__CLASS__.": boolean not valid ($param) ");
+      }
+      return( true );
+    }
+
+    public static function checkint($param)
+    {
+      if (! is_int($param) ) {
+        throw new Exception(__CLASS__.": integer not valid ($param) ");
+      }
+      return( true );
+    }
+    
+    public static function alwaysTrue($param)
+    {
+      return(true);
+    }
   
-        if ( is_int($iId) && $iId > 0 ) {
-          $lReturn = true;
-        }
-  
-        return($lReturn);
+    public static function id($param)
+    {
+      if (! is_int($param) || ( $param < 0 ) ) {
+        throw new Exception(__CLASS__.": id not valid ($param) ");
+      }
+      return( true );
     }
  
-    public static function dateString($sDate)
+    public static function dateString($param)
     {
-        $lReturn = false;
         // utilisation de l'operateur de transtypage (int) conversion de la valeur en integer
         if (
-            is_string($sDate) &&
-            strlen($sDate) == 8 &&
-            checkdate ( (int)substr($sDate, 4, 2), (int)substr($sDate, 6, 2), (int)substr($sDate, 0, 4) )
+            ! is_string($param) ||
+            strlen($param) !== 8 ||
+            ! checkdate ( (int)substr($param, 4, 2), (int)substr($param, 6, 2), (int)substr($param, 0, 4) )
               ) {
-              $lReturn = true;
+
+          throw new Exception(__CLASS__.": dateString not valid ($param) ");
           }
       
-        return($lReturn);
+        return(true);
     }
       
-    public static function role($sRole)
+    public static function role($param)
     {
-      $lReturn = false;
       if (
-        Validate::checkstring($sRole) &&
-        in_array( $sRole, ["user","admin"] )
+        ! Validate::checkstring($param) ||
+        ! in_array( $param, ["user","admin", "devops"] )
         ) {
-          $lReturn = true;
+          throw new Exception(__CLASS__.": role not valid ($param) ");
       }
-  
-      return($lReturn);
+      return(true);
     }
   
   

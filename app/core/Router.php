@@ -84,4 +84,16 @@ class Router
 
     }
 
+    public function addCoreRoutes()
+    {
+        $this->addRoute('/login',            'LoginController',      'login');
+        $this->addRoute('/checklogin',       'LoginController',      'checklogin');
+        $this->addRoute('/forgotpasswd',     'LoginController',      'forgotpasswd');
+        $this->addRoute('/newpasswd',        'LoginController',      'newpasswd');
+        $this->addRoute('/logout',           'LoginController',      'logout');
+        $this->addRoute('/register',         'LoginController',   'register');
+        $this->addRoute('/register-save',    'LoginController',   'register-save');
+        $this->addRoute('default',           'HttpErrorController',  'err404');
+        
+    }
 }

@@ -11,36 +11,31 @@ class PieceController extends Controller
             case 'piece':
                 $this->view = new PieceView();
                 $this->view->render();
-                $this->exit_code = self::EXIT_DONE;
+                $this->exitDone();
                 break;
 
             case 'piece-edit':
                 $this->view = new PieceEditView();
                 $this->view->render();
-                $this->exit_code = self::EXIT_DONE;
+                $this->exitDone();
                 break;
     
             case 'piece-delete':
                 // Enregistrement des donnes
                 
-                $this->exit_code = self::EXIT_REDIRECT;
-                $this->redirect_path = '/piece';
-                $this->http_response_code = 200;
+                $this->exitRedirect('/piece');
                 break;
 
             case 'piece-add':
                 $this->view = new PieceEditView();
                 $this->view->render();
-                $this->exit_code = self::EXIT_DONE;
+                $this->exitDone();
                 break;
             
             case 'piece-save':
                 // Enregistrement des donnes
                 
-                $this->exit_code = self::EXIT_REDIRECT;
-                $this->redirect_path = '/piece';
-                $this->http_response_code = 200;
-
+                $this->exitRedirect('/piece');
                 break;
 
             default:

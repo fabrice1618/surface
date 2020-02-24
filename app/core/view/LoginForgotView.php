@@ -8,6 +8,7 @@ class LoginForgotView extends View
         $this->setPageTitle("Demandez un nouveau mot de passe - Calculez la surface de votre logement");
         $this->setPageKeywords( "Calcul surface logement" );
         $this->setPageDescription( "Demande de nouveau mot de passe" );
+        $this->setHtmlHeadContent( $this->readTemplate("htmlhead_core.html") );
 
         $this->setPageContent( $this->readTemplate("login_forgot.html"));
     }

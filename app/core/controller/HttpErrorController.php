@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends Controller
+class HttpErrorController extends Controller
 {
 
     public function run( $sAction )
@@ -8,8 +8,10 @@ class HomeController extends Controller
         global $oApp;
         
         switch ($sAction) {
-            case 'home':
-                $this->view = new HomeView();
+            case 'err404':
+                $this->view = new HttpErrorView();
+                $this->view->setData( 'http_error', '404' );
+                http_response_code(404);
                 $this->view->render();
                 $this->exitDone();
                 break;

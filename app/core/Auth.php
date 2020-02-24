@@ -26,19 +26,17 @@ class Auth
     // une méthode static peut etre appellée sans instance
     public static function Authentification( $sEmail, $sPassword )
     {
-        global $oApp;
 
-        $lReturn = false;
-        if ( Auth::checkPassword( $sEmail, $sPassword ) ) {
-            $lReturn = true;
-            $oApp->user = new User;
-            $oApp->user->readByEmail($sEmail);
+        $oUser = new User;
+
+        if ( Auth::checkPassword( $sEmail, Auth::hashPassword($sPassword) ) ) {
+            $oUser->readByEmail($sEmail);
         }
 
-        return($lReturn);
+        return($oUser);
     }
 
-    public static function checkPassword( $sEmail, $sPassword )
+    public static function checkPassword( $sEmail, $sPasswordHash )
     {
         $lReturn = false;
 
@@ -113,7 +111,7 @@ class Auth
         return( self::SYMBOLES[rand(0, 9)] );
     }
 
-    // Generation d'un mot de passe suivant la constante PASSWORD_SCHEME
+    // Validation du mot de passe suivant la constante PASSWORD_SCHEME
     public static function validatePassword($sPassword)
     {
         $lReturn = false;
@@ -151,8 +149,6 @@ class Auth
                         break;
                 }
             }
-        } else {
-            throw new \Exception("Auth: Error invalid password", 1);
         }
 
         return($lReturn);

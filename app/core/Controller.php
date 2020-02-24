@@ -8,9 +8,19 @@ class Controller
     protected $view;
 
     public $exit_code = null;
-    public $exit_data = null;
+//    public $exit_data = null;
     public $redirect_path = '';
-    public $http_response_code = 200;
 
+
+    protected function exitDone()
+    {
+        $this->exit_code = self::EXIT_DONE;
+    }
+
+    protected function exitRedirect( string $sRedirectPath )
+    {
+        $this->exit_code = self::EXIT_REDIRECT;
+        $this->redirect_path = $sRedirectPath;
+    }
 
 }

@@ -3,13 +3,6 @@
 // Remarquer que l'autoloader utilise une fonction anomyme
 // voir documentation https://www.php.net/manual/en/language.oop5.autoload.php
 
-define('DIRECTORY_LIST', [
-  'app/core',
-  'app/controller',
-  'app/model',
-  'app/view'
-  ] );
-
 spl_autoload_register( function ($sClassname) {
     global $sBasepath;
 
@@ -20,6 +13,9 @@ spl_autoload_register( function ($sClassname) {
     // Liste des dossiers où sont stockées les classes
     $aDirectoryList = [
         'app/core',
+        'app/core/controller',
+        'app/core/model',
+        'app/core/view',
         'app/controller',
         'app/model',
         'app/view'

@@ -11,36 +11,31 @@ class LogementController extends Controller
             case 'logement':
                 $this->view = new LogementView();
                 $this->view->render();
-                $this->exit_code = self::EXIT_DONE;
+                $this->exitDone();
                 break;
 
             case 'logement-edit':
                 $this->view = new LogementEditView();
                 $this->view->render();
-                $this->exit_code = self::EXIT_DONE;
+                $this->exitDone();
                 break;
     
             case 'logement-delete':
                 // Enregistrement des donnes
                 
-                $this->exit_code = self::EXIT_REDIRECT;
-                $this->redirect_path = '/logement';
-                $this->http_response_code = 200;
+                $this->exitRedirect('/logement');
                 break;
 
             case 'logement-add':
                 $this->view = new LogementEditView();
                 $this->view->render();
-                $this->exit_code = self::EXIT_DONE;
+                $this->exitDone();
                 break;
             
             case 'logement-save':
                 // Enregiqtrement des donnes
                 
-                $this->exit_code = self::EXIT_REDIRECT;
-                $this->redirect_path = '/logement';
-                $this->http_response_code = 200;
-
+                $this->exitRedirect('/logement');
                 break;
 
             default:

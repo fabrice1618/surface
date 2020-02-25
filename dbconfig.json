@@ -1,10 +1,10 @@
 {
-    "host": "localhost",
-    "databasename": "surface",
-    "charset": "utf8",
-    "user": "surface_user",
-    "password": "CTxqqk7DCHDcmLfd",
-    "options": {
-        "12": true
-    }
+  "host": "localhost:3306",
+  "databasename": "afficheur",
+  "charset": "utf8",
+  "user": "afficheur_user",
+  "password": "Aa1-Bb2-Cc3",
+  "options": {
+    "12": true
+  }
 }

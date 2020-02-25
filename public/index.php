@@ -1,6 +1,6 @@
 <?php
-$sBasepath = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'].'/': '../';
-require_once($sBasepath."app/core/autoload.php");
+$sBasepath = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] . '/' : '../';
+require_once($sBasepath . "app/core/autoload.php");
 
 session_start();
 $oApp = new App();
@@ -13,8 +13,8 @@ $oApp->openDatabase();
 
 
 switch ($oApp->request_uri) {
-    case '/':
-        $sControllerName = 'HomeController';
+    case '/affichage':
+        $sControllerName = 'ScreenerController';
         break;
     case '/connexion':
     case '/checklogin':
@@ -27,19 +27,54 @@ switch ($oApp->request_uri) {
     case '/inscription-save':
         $sControllerName = 'InscriptionController';
         break;
-    case '/logement':
-    case '/logement-add':
-    case '/logement-edit':
-    case '/logement-delete':
-    case '/logement-save':
-        $sControllerName = 'LogementController';
+    case '/tranche':
+    case '/tranche-add':
+    case '/tranche-edit':
+    case '/tranche-delete':
+    case '/tranche-save':
+        $sControllerName = 'TrancheController';
         break;
-    case '/piece':
-    case '/piece-add':
-    case '/piece-edit':
-    case '/piece-delete':
-    case '/piece-save':
-        $sControllerName = 'PieceController';
+    case '/typesalle':
+    case '/typesalle-add':
+    case '/typesalle-edit':
+    case '/typesalle-delete':
+    case '/typesalle-save':
+        $sControllerName = 'TypeSalleController';
+        break;
+    case '/secteur':
+    case '/secteur-add':
+    case '/secteur-edit':
+    case '/secteur-delete':
+    case '/secteur-save':
+        $sControllerName = 'SecteurController';
+        break;
+    case '/message':
+    case '/message-add':
+    case '/message-edit':
+    case '/message-delete':
+    case '/message-save':
+        $sControllerName = 'MessageController';
+        break;
+    case '/filliere':
+    case '/filliere-add':
+    case '/filliere-edit':
+    case '/filliere-delete':
+    case '/filliere-save':
+        $sControllerName = 'FilliereController';
+        break;
+    case '/occupation':
+    case '/occupation-add':
+    case '/occupation-edit':
+    case '/occupation-delete':
+    case '/occupation-save':
+        $sControllerName = 'OccupationController';
+        break;
+    case '/salle':
+    case '/salle-add':
+    case '/salle-edit':
+    case '/salle-delete':
+    case '/salle-save':
+        $sControllerName = 'SalleController';
         break;
     case '/contact':
         $sControllerName = 'ContactController';

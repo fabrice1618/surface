@@ -29,48 +29,48 @@ class User extends Model
     parent::__construct();
   }
 
-  
-  private function validateUsr_email($sEmail)
-  {
-      $lReturn = false;
-      if ( filter_var($sEmail, FILTER_VALIDATE_EMAIL) !== false ) {
-        $lReturn = true;
-      }
 
-      return($lReturn);
-  }
+    protected function validateUsr_email($sEmail)
+    {
+        $lReturn = false;
+        if (filter_var($sEmail, FILTER_DEFAULT) !== false) {
+            $lReturn = true;
+        }
 
-  private function validateUsr_date_connexion($sDate)
-  {
-      $lReturn = false;
-      // utilisation de l'operateur de transtypage (int) conversion de la valeur en integer
-    if (
-      is_string($sDate) &&
-      strlen($sDate) == 8 &&
-      checkdate ( (int)substr($sDate, 4, 2), (int)substr($sDate, 6, 2), (int)substr($sDate, 0, 4) )
-        ) {
-        $lReturn = true;
+        return ($lReturn);
     }
 
-      return($lReturn);
-  }
-
-  private function validateUsr_role($sRole)
-  {
-      $lReturn = false;
-    if (
-      is_string($sRole) &&
-      in_array( $sRole, ["user","admin"] )
+    protected function validateUsr_date_connexion($sDate)
+    {
+        $lReturn = false;
+        // utilisation de l'operateur de transtypage (int) conversion de la valeur en integer
+        if (
+            is_string($sDate) &&
+            strlen($sDate) == 8 &&
+            checkdate((int)substr($sDate, 4, 2), (int)substr($sDate, 6, 2), (int)substr($sDate, 0, 4))
         ) {
-        $lReturn = true;
+            $lReturn = true;
+        }
+
+        return ($lReturn);
     }
 
-      return($lReturn);
-  }
+    protected function validateUsr_role($sRole)
+    {
+        $lReturn = false;
+        if (
+            is_string($sRole) &&
+            in_array($sRole, ["user", "admin"])
+        ) {
+            $lReturn = true;
+        }
 
-  public function newPassword()
-  {
-    $sNewPassword = Auth::generatePassword();
+        return ($lReturn);
+    }
+
+    public function newPassword()
+    {
+        $sNewPassword = Auth::generatePassword();
       $this->usr_password = Auth::hashPassword( $sNewPassword );
 
       return($sNewPassword);

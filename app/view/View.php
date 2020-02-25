@@ -5,27 +5,35 @@ Class View
     private $page_title = "Titre de la page";
     private $page_keywords = "Mots clés de la page";
     private $page_description = "Description de la page";
+    private $page_style = "";
     private $page_menu = "";
     private $page_content = "";
     private $footer_template = "";
+    private $page_link = "";
+    private $page_template = "";
 
     public function render()
     {
         // Demarre la bufferisation de sortie
         ob_start();
-        echo('<!doctype html>'.PHP_EOL);
-        echo('<html lang="fr" dir="ltr">'.PHP_EOL);
-        printf( $this->readTemplate("htmlhead.html"),
+        echo('<!doctype html>' . PHP_EOL);
+        echo('<html lang="fr" dir="ltr">' . PHP_EOL);
+        printf($this->readTemplate("htmlhead.php"),
             $this->page_keywords,
             $this->page_description,
-            $this->page_title
-            );
-        echo('<body>'.PHP_EOL);
+            $this->page_title,
+            $this->page_style
+        );
+        echo('<body>' . PHP_EOL);
         echo($this->page_menu);
-        echo($this->page_content);
-        echo($this->readTemplate( $this->footer_template ));
+        printf($this->page_template,
+            $this->page_title,
+            $this->page_link,
+            $this->page_content
+        );
+        echo($this->readTemplate($this->footer_template));
         $this->debugPanel();
-        echo('</body>'.PHP_EOL);
+        echo('</body>' . PHP_EOL);
         echo('</html>');
         // envoi le buffer sur la sortie puis libere le buffer
         ob_end_flush();
@@ -36,32 +44,47 @@ Class View
         $this->page_title = $sPageTitle;
     }
 
-    public function setPageKeywords( $sPageKeywords )
+    public function setPageKeywords($sPageKeywords)
     {
         $this->page_keywords = $sPageKeywords;
     }
 
-    public function setPageDescription( $sPageDescription )
+    public function setPageDescription($sPageDescription)
     {
         $this->page_description = $sPageDescription;
     }
 
-    public function setPageMenu( $sPageMenu )
+    public function setPageStyle($sPageStyle)
+    {
+        $this->page_style = $sPageStyle;
+    }
+
+    public function setPageMenu($sPageMenu)
     {
         $this->page_menu = $sPageMenu;
     }
 
-    public function setPageContent( $sPageContent )
+    public function setPageTemplate($sPageTemplate)
+    {
+        $this->page_template = $sPageTemplate;
+    }
+
+    public function setPageLink($sPageLink)
+    {
+        $this->page_link = $sPageLink;
+    }
+
+    public function setPageContent($sPageContent)
     {
         $this->page_content = $sPageContent;
     }
 
-    public function setFooterTemplate( $sFooterTemplate )
+    public function setFooterTemplate($sFooterTemplate)
     {
         $this->footer_template = $sFooterTemplate;
     }
 
-    protected function readTemplate( $sTemplateName )
+    protected function readTemplate($sTemplateName)
     {
         $sTemplate = "";
         if (!empty($sTemplateName)) {
@@ -82,8 +105,6 @@ Class View
     private function debugPanel()
     {
         global $oApp;
-
-        echo "<hr/>\n";
 
         echo "<h5>APP</h5>";
         var_dump($oApp);

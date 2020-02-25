@@ -30,7 +30,7 @@ class InscriptionController extends Controller
                 fclose($fp);
 
                 $this->view = new LoginView();
-                $this->view->setAlertTemplate("login_newpasswd.html");
+                $this->view->setAlertTemplate("login_newpasswd.php");
                 break;
         }
 

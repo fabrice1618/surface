@@ -6,11 +6,11 @@ class InscriptionView extends View
 
     public function __construct()
     {
-        $this->setPageTitle("Inscription - Calculez la surface de votre logement");
-        $this->setPageKeywords( "Calcul surface logement" );
-        $this->setPageDescription( "Inscription pour obtenir votre espace personnel" );
-
-        $this->setPageContent( $this->readTemplate("inscription.html") );
+        $this->setPageTitle("Inscription - Module d'affichage");
+        $this->setPageKeywords("Greta, Loire, Formation professionnelle");
+        $this->setPageDescription("Inscription pour obtenir votre espace personnel");
+        $this->setPageTemplate($this->readTemplate("public.php"));
+        $this->setPageContent($this->readTemplate("inscription.php"));
     }
 
 }

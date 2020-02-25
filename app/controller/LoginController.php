@@ -11,12 +11,12 @@ class LoginController extends Controller
 
         $sUserEmail = $_POST['user_email'] ?? '';
         $sUserPassword = $_POST['user_password'] ?? '';
-//        $sUserEmailCookie = $_COOKIE['user_email'] ?? '';
-//        $sUserPasswordCookie = $_COOKIE['user_password'] ?? '';
+        $sUserEmailCookie = $_COOKIE['user_email'] ?? '';
+        $sUserPasswordCookie = $_COOKIE['user_password'] ?? '';
 
         // Si l'utilisateur souhaite enregistrer sa Connexion
         // aller directement au controle de mot de passe
-        if ($sRequestURI=='/connexion' && !empty($sUserEmailCookie) && !empty($sUserPasswordCookie) ) {
+        if ($sRequestURI == '/connexion' && !empty($sUserEmailCookie) && !empty($sUserPasswordCookie)) {
             $sRequestURI = '/checklogin';
             $sUserEmail = $sUserEmailCookie;
             $sUserPassword = $sUserPasswordCookie;
@@ -42,11 +42,11 @@ class LoginController extends Controller
 
 
                     // Entrer dans la partie connectée
-                    $this->view = new LogementView();
+                    $this->view = new OccupationView();
                 } else {
                     // Ré-afficher l'écran de connexion avec un message d'erreur
                     $this->view = new LoginView();
-                    $this->view->setAlertTemplate("login_alert.html");
+                    $this->view->setAlertTemplate("login_alert.php");
                 }
 
                 break;
@@ -68,7 +68,7 @@ class LoginController extends Controller
                 fclose($fp);
 
                 $this->view = new LoginView();
-                $this->view->setAlertTemplate("login_newpasswd.html");
+                $this->view->setAlertTemplate("login_newpasswd.php");
                 break;
         }
 

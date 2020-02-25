@@ -1,0 +1,122 @@
+body {
+    background-color: black;
+    color: lightgray;
+}
+
+.form-control {
+    width: 30%;
+
+}
+
+.dropdown-divider {
+    width: 30%;
+
+}
+
+.container-fluid {
+    color: lightgrey;
+    padding: 2rem 0rem 2rem 0rem;
+    margin-top: 4rem;
+}
+
+.container {
+    background-color: black;
+    margin-top: 50px;
+}
+
+/* style du bouton */
+.menu-deroulant {
+    background-color: black; /* vert */
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    width: 400px;
+    margin: 30px;
+    margin-top: 50px;
+}
+
+/* On positionne (en relatif) le conteneur du menu déroulant
+  pour pouvoir positionner le contenu de la liste juste
+  en dessous du span */
+.menu-deroulant {
+    position: relative;
+    display: inline-block;
+}
+
+/* Contenu déroulant (caché par défaut)
+   et positionné par rapport au conteneur */
+.menu-deroulant div {
+    display: none; /* caché */
+    position: absolute;
+    background-color: #F9F9F9; /* gris pale */
+    min-width: 160px;
+    z-index: 1; /* en avant */
+}
+
+/* Les liens du menu déroulant */
+a {
+    color: orange;
+    padding: 12px 16px;
+    text-decoration: none; /* on enlève le surlignement */
+    display: block; /* on les affiche */
+}
+
+a:hover {
+    color: darkorange;
+    text-decoration: none;
+    text-shadow: 0 0 10px 3px rgba(255, 111, 15, 0.521);
+}
+
+/* Au survol du menu, on affiche le contenu déroulant (qui était caché) */
+.menu-deroulant:hover div {
+    display: block;
+}
+
+.navbar i {
+    color: orange;
+}
+
+.navbar i:hover {
+    color: darkorange;
+    text-shadow: 0 0 10px 3px rgba(255, 111, 15, 0.521);
+}
+
+.card {
+    background-color: rgba(31, 31, 35, 0.8);
+    margin: 2rem;
+}
+
+.copyright {
+    padding: 8px 16px 16px 8px;
+}
+
+
+.menu {
+    background-color: black;
+}
+
+.btn {
+    color: rgba(31, 31, 35, 0.8);
+    background-color: orange;
+}
+
+.btn:hover {
+    color: rgba(31, 31, 35, 0.8);
+    background-color: darkorange;
+}
+
+.table {
+    color: lightgray;
+}
+
+.btn {
+    margin: .5rem;
+}
+
+.card .card {
+    margin: .5rem;
+}
+
+.column {
+    margin: 0rem;
+}

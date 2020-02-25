@@ -1,0 +1,8 @@
+window_sizes 1800 910 450 1345 758 104
+
+show_stereotypes
+selected usecasediagram_ref 128002 // Users
+open
+  usecaseview_ref 128002 // surface
+end
+end

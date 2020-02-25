@@ -1,0 +1,70 @@
+.badge-full, .row-full {
+    min-height: 100px;
+    height: 100px;
+}
+
+.badge-information {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.badge-information:first-child {
+    margin-left: 20px !important;
+}
+
+.badge-information:last-child {
+    margin-right: 20px !important;
+}
+
+.docs .card {
+    border: none !important;
+}
+
+.card, .pointer {
+    cursor: pointer;
+}
+
+.s-1 {
+    height: 100px !important;
+}
+
+.s-2 {
+    height: 200px !important;
+}
+
+.s-3 {
+    height: 300px !important;
+}
+
+.s-4 {
+    height: 400px !important;
+}
+
+.s-5 {
+    height: 500px !important;
+}
+
+.s-6 {
+    height: 600px !important;
+}
+
+.s-7 {
+    height: 700px !important;
+}
+
+.s-8 {
+    height: 800px !important;
+}
+
+.s-9 {
+    height: 900px !important;
+}
+
+.modal-body {
+    padding-top: 30px;
+}
+
+ul#listOp li:not(:first-child)::before {
+    content: "/";
+    margin-right: 7.5px;
+}

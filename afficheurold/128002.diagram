@@ -1,0 +1,62 @@
+format 222
+
+classcanvas 128002 class_ref 128002 // User
+  simpleclassdiagramsettings end
+  xyz 84 183 2000
+end
+usecasecanvas 128258 usecase_ref 128130 // connect
+  xyzwh 213 168 3005 64 32 label_xy 225 200
+end
+usecasecanvas 128386 usecase_ref 128258 // disconnect
+  xyzwh 246 117 3005 64 32 label_xy 251 149
+end
+usecasecanvas 128514 usecase_ref 128386 // show list logt
+  xyzwh 235 277 3005 64 32 label_xy 235 309
+end
+usecasecanvas 129154 usecase_ref 128514 // new logt
+  xyzwh 444 236 3005 64 32 label_xy 455 268
+end
+usecasecanvas 129282 usecase_ref 128642 // update logt
+  xyzwh 481 330 3005 64 32 label_xy 486 362
+end
+usecasecanvas 129410 usecase_ref 128770 // delete logt
+  xyzwh 524 451 3005 64 32 label_xy 531 483
+end
+usecasecanvas 129538 usecase_ref 128898 // send email
+  xyzwh 497 183 3005 64 32 label_xy 503 215
+end
+usecasecanvas 130178 usecase_ref 129026 // show list pieces
+  xyzwh 243 417 3005 64 32 label_xy 236 449
+end
+usecasecanvas 130434 usecase_ref 129154 // new piece
+  xyzwh 148 567 3005 64 32 label_xy 154 599
+end
+usecasecanvas 130562 usecase_ref 129282 // delete piece
+  xyzwh 309 607 3005 64 32 label_xy 312 639
+end
+usecasecanvas 130690 usecase_ref 129410 // update piece
+  xyzwh 462 614 3005 64 32 label_xy 463 646
+end
+line 128642 ---> decenter_end 561
+  from ref 128002 z 3006 label "action" max_width 255 xyz 170 154 3000 to ref 128386
+line 128770 --->
+  from ref 128002 z 3006 label "action" max_width 255 xyz 154 185 3000 to ref 128258
+line 129026 ---> decenter_end 358
+  from ref 128002 z 3006 label "action" max_width 255 xyz 176 235 3000 to ref 128514
+line 129666 ---> decenter_begin 280 decenter_end 500
+  from ref 128514 z 3006 to ref 129538
+line 129794 --->
+  from ref 128514 z 3006 to ref 129154
+line 129922 --->
+  from ref 128514 z 3006 to ref 129282
+line 130050 --->
+  from ref 128514 z 3006 to ref 129410
+line 130306 --->
+  from ref 128514 z 3006 to ref 130178
+line 130818 --->
+  from ref 130178 z 3006 to ref 130434
+line 130946 --->
+  from ref 130178 z 3006 to ref 130562
+line 131074 --->
+  from ref 130178 z 3006 to ref 130690
+end

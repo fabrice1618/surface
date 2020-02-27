@@ -4,7 +4,7 @@ if ( !isset($_SERVER['DOCUMENT_ROOT'])) {
 }
 // Chemin de la base de l'application avec un slash final
 $sBasepath=$_SERVER['DOCUMENT_ROOT'].'/';
-require_once($sBasepath."/app/core/autoload.php");
+require_once($sBasepath."core/autoload.php");
 
 session_start();
 $oRouter = new Router();

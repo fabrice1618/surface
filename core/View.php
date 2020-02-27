@@ -110,7 +110,7 @@ Class View
         $sFile = $oApp->base_path . 'app/template/'.$sTemplateName;
         $sTemplate = $this->readTemplateFile($sFile);
         if ( $sTemplate === false ) {
-            $sFile = $oApp->base_path . 'app/core/template/'.$sTemplateName;
+            $sFile = $oApp->base_path . 'core/template/'.$sTemplateName;
             $sTemplate = $this->readTemplateFile($sFile);
             if ( $sTemplate === false ) {
                 throw new \Exception("Template not found" . $sTemplateName, 1);

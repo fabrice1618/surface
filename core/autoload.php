@@ -12,10 +12,10 @@ spl_autoload_register( function ($sClassname) {
 
     // Liste des dossiers où sont stockées les classes
     $aDirectoryList = [
-        'app/core',
-        'app/core/controller',
-        'app/core/model',
-        'app/core/view',
+        'core',
+        'core/controller',
+        'core/model',
+        'core/view',
         'app/controller',
         'app/model',
         'app/view'
